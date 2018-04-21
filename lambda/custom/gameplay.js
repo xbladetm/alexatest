@@ -264,3 +264,7 @@ function pickRandomIndex(arr) {
     Math.floor(Math.random() * Math.floor(arr.length)) : 0;
     return index;
 };
+
+function pickRandomSleep(max_sleep) {
+    return Math.random(max_sleep);
+};
