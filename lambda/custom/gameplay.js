@@ -107,26 +107,11 @@ module.exports = Alexa.CreateStateHandler(Settings.SKILL_STATES.PLAY_MODE, {
             this.attributes.CurrentInputHandlerID = this.event.request.requestId;
             console.log("Current Input Handler ID: " + this.attributes.CurrentInputHandlerID);
 
-            // configure light animation for the reference button
-            this.response._addDirective(GadgetDirectives.setIdleAnimation({ 
-                'targetGadgets': [ deviceIds[0] ], 
-                'animations': BasicAnimations.SolidAnimation(1, this.attributes.ReferenceColorShade, 20000)  
-            } ));
+
             // configure light animation for the play button
             this.response._addDirective(GadgetDirectives.setIdleAnimation({ 
-                'targetGadgets': [ deviceIds[1] ], 
-                'animations': makeRollingAnimation(Settings.COLOR_SHADES[uColor], 1000) 
-            } ));
-            // for button down, briefly set the color to the reference shade
-            this.response._addDirective(GadgetDirectives.setButtonDownAnimation({ 
-                'targetGadgets': deviceIds, 
-                'animations': BasicAnimations.SolidAnimation(1, this.attributes.ReferenceColorShade, 10) 
-            } ));
-            // for button up, briefly set the color to the reference shade
-            this.response._addDirective(GadgetDirectives.setButtonUpAnimation({ 
-                'targetGadgets': deviceIds, 
-                'animations': BasicAnimations.SolidAnimation(1,
-                            this.attributes.ReferenceColorShade, 10) 
+                'targetGadgets': deviceIds , 
+                'animations':BasicAnimations.SolidAnimation(1,"red") 
             } ));
 
             const outputSpeech = "Ok. "+ uColor + " it is. Try to press your button " 
