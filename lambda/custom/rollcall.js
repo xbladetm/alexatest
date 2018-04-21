@@ -186,36 +186,17 @@ module.exports = Alexa.CreateStateHandler(Settings.SKILL_STATES.ROLL_CALL_MODE, 
     } = {}) {
         console.log("rollCallModeIntentHandlers::InputHandlerEvent::second_button_checked_in");
         
-        const reprompt = "Please pick a color: green, red, or blue";
         let outputSpeech = "";
 
-        if (this.attributes.buttonCount == 0) {
-            // just got both buttons at the same time
-            outputSpeech = "We both have buttons. <break time='1s'/> " 
-                               + " Awesome. Let's start the game! "
+        // just got both buttons at the same time
+        outputSpeech = "We both have buttons. <break time='1s'/> " 
+                        + " Awesome. Let's start the game! "
 
-            this.attributes.DeviceIDs[1] = inputEvents[0].gadgetId;
-            this.attributes.DeviceIDs[2] = inputEvents[1].gadgetId;
-
-        } else {
-            // already had button 1, just got button 2
-            outputSpeech = "I see your button too. <break time='1s'/> "
-                         + " Let's start the game! ";
-
-
-            if (this.attributes.DeviceIDs.indexOf(inputEvents[0].gadgetId) === -1) {
-                this.attributes.DeviceIDs[2] = inputEvents[0].gadgetId;
-            } else {
-                this.attributes.DeviceIDs[2] = inputEvents[1].gadgetId;
-            }                        
-        }
+        this.attributes.DeviceIDs[1] = inputEvents[0].gadgetId;
+        this.attributes.DeviceIDs[2] = inputEvents[1].gadgetId;
         this.attributes.buttonCount = 2;
         
         // .. and ask use to pick a color for the next stage of the skill
-        outputSpeech += "Choose a color: red, blue, or green.";
-
-        this.response.speak(outputSpeech).listen(reprompt);                        
-            
         let deviceIds = this.attributes.DeviceIDs;
         deviceIds = deviceIds.slice(-2);
 
