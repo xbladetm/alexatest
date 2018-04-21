@@ -120,12 +120,11 @@ module.exports = Alexa.CreateStateHandler(Settings.SKILL_STATES.ROLL_CALL_MODE, 
         console.log("rollCallModeIntentHandlers::NewSession");
 
         // setup the output speech that Alexa should speak when roll call starts
-        const welcomeMessage = "Welcome to Quick Colors! "
-                             + "We need two buttons for this game. You’ll pick a color and I’ll "
-                             + "use the first button to display a shade of your color. "
-                             + "Using the second button, you'll have to try to match the color "
-                             + "I'm showing on mine. Are you ready? "
-                             + "To get started, assign a button to me, by pressing it now. ";        
+        const welcomeMessage = "Welcome to Speed Tap!"
+                             + "Wait for my Go! and press as fast as possible."
+                             + "The person pressing the button first win."
+                             + "Are you ready? "
+                             + "To get started, assign a button per player by pressing it now.";
 
         // pass control over to the StartRollCall event handler
         this.emit('StartRollCall', {
@@ -170,8 +169,7 @@ module.exports = Alexa.CreateStateHandler(Settings.SKILL_STATES.ROLL_CALL_MODE, 
         // we check the make sure the `buttonCount` attribute is set to 0; if not, we will silently ignore the event
         if (this.attributes.buttonCount === 0) {                        
             // Say something when we first encounter a button
-            const outputSpeech = "Thanks! I'll use this button. " 
-                               + "Now, add one more for yourself. " + Settings.WAITING_AUDIO;
+            const outputSpeech = "Player added!" + Settings.WAITING_AUDIO;
             
             let fistButtonId = inputEvents[0].gadgetId;
             this.response._addDirective(GadgetDirectives.setIdleAnimation(ROLL_CALL_ANIMATIONS.ButtonCheckInIdle, { 'targetGadgets': [fistButtonId] } ));

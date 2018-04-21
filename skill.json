@@ -3,21 +3,21 @@
     "publishingInformation": {
       "locales": {
         "en-US": {
-          "summary": "Quick Colors",
+          "summary": "Speed Tap",
           "examplePhrases": [
-            "Alexa, open quick colors",
-            "Alexa, launch quick colors"
+            "Alexa, open speed tap",
+            "Alexa, launch speed tap"
           ],
           "keywords": [
             "buttons",
             "games"
           ],
-          "name": "quick colors",
-          "description": "A simple Echo Buttons game."
+          "name": "speed tap",
+          "description": "A simple speed tap game."
         }
       },
       "isAvailableWorldwide": true,
-      "testingInstructions": "Open the skill and follow the prompts. You will need two Echo buttons to test.",
+      "testingInstructions": "Open the skill and follow the prompts. You will need at least two Echo buttons to test.",
       "category": "GAMES",
       "distributionCountries": [],
       "gadgetSupport": {
