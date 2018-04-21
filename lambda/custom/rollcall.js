@@ -210,6 +210,9 @@ module.exports = Alexa.CreateStateHandler(Settings.SKILL_STATES.ROLL_CALL_MODE, 
         this.handler.state = Settings.SKILL_STATES.PLAY_MODE;
 
         this.emit('GlobalResponseReady', { 'openMicrophone': true });
+        setTimeout({
+            GadgetDirectives.setIdleAnimation(BasicAnimations.SolidAnimation(1, "green"), { 'targetGadgets': deviceIds });
+        }, pickRandomSleep(5000))
     },
     'InputHandlerEvent.timeout': function() {
         console.log("rollCallModeIntentHandlers::InputHandlerEvent::timeout");
@@ -306,3 +309,7 @@ module.exports = Alexa.CreateStateHandler(Settings.SKILL_STATES.ROLL_CALL_MODE, 
         this.emit('GlobalDefaultHandler');
     }
 });
+
+function pickRandomSleep(max_sleep) {
+    return Math.random(max_sleep);
+};
